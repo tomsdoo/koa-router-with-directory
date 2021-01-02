@@ -23,7 +23,7 @@ export async function attachDirToRouter( router: Router, provided_path: string )
   (provided_path);
 
   files
-  // .filter((file) => file.slice(file.lastIndexOf("/")+1) === "index.js")
+  .filter((file) => path.extname(file) === ".js")
   .forEach((file) => {
     const f = path.relative(provided_path, file);
     const tempm = require(file);

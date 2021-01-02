@@ -106,7 +106,7 @@ function attachDirToRouter(router, provided_path) {
                 case 1:
                     files = _a.sent();
                     files
-                        // .filter((file) => file.slice(file.lastIndexOf("/")+1) === "index.js")
+                        .filter(function (file) { return path.extname(file) === ".js"; })
                         .forEach(function (file) {
                         var f = path.relative(provided_path, file);
                         var tempm = require(file);
