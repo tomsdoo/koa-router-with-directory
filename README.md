@@ -29,7 +29,7 @@ attachDirToRouter(router, path.join(__dirname, "routes/"))
 });
 ```
 
-the project directory should like below.
+the project directory should be like below.
 ``` sh
 project
 |- routes
