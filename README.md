@@ -44,7 +44,7 @@ project
 |_ server.js
 ```
 
-routed files should have one or more methods named get|post|put|delete.
+routed files should be named "index.js" and have one or more methods named get|post|put|delete.
 ``` js
 exports.get = function(){}
 exports.post = function(){}
