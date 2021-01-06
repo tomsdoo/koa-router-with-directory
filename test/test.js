@@ -14,13 +14,13 @@ describe(`routes`, () => {
       r_router.stack.forEach((layer) => {
         myset.add(layer.path);
       });
-      assert(myset.size === 3, "count of paths");
+      assert(myset.size === 2, "count of paths");
       const result = [
         {method: "GET", path: "/path1/:name/"},
         {method: "GET", path: "/path2/:value/"},
         {method: "POST", path: "/path2/:value/"},
-        {method: "GET", path: "/path2/:value/test"},
-        {method: "PUT", path: "/path2/:value/test"},
+        // {method: "GET", path: "/path2/:value/test"},
+        // {method: "PUT", path: "/path2/:value/test"},
       ].every((tempo) => {
         return r_router.stack.some((layer) => {
           return layer.methods.includes(tempo.method) && layer.path === tempo.path;
