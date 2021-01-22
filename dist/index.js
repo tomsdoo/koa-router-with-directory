@@ -114,17 +114,18 @@ function attachDirToRouter(router, provided_path) {
                         var mpath = ("/" + f.slice(0, f.lastIndexOf("/") + 1)).replace(/_/g, ":");
                         var basename = path.basename(f, path.extname(f));
                         ["get", "post", "put", "delete"]
-                            .filter(function (method) {
+                            .map(function (method) {
                             for (var tempmethod in tempm) {
                                 if (tempmethod.toUpperCase() === method.toUpperCase()) {
-                                    return true;
+                                    return { method: method, functionname: tempmethod };
                                 }
                             }
-                            return false;
+                            return { method: method, functionname: null };
                         })
-                            .forEach(function (method) {
+                            .filter(function (mset) { return mset.functionname; })
+                            .forEach(function (mset) {
                             // @ts-ignore
-                            router[method]("" + mpath + (basename === "index" ? "" : basename), tempm[method]);
+                            router[mset.method]("" + mpath + (basename === "index" ? "" : basename), tempm[mset.functionname]);
                         });
                     });
                     return [2 /*return*/, Promise.resolve(router)];
