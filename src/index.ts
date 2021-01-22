@@ -31,7 +31,12 @@ export async function attachDirToRouter( router: Router, provided_path: string )
     const mpath = `/${f.slice(0, f.lastIndexOf("/")+1)}`.replace(/_/g, ":");
     const basename = path.basename(f, path.extname(f));
     ["get","post","put","delete"]
-    .filter((method) => method in tempm)
+    .filter((method) => {
+      for(const tempmethod in tempm){
+        if(tempmethod.toUpperCase() === method.toUpperCase()){return true;}
+      }
+      return false;
+    })
     .forEach((method) => {
       // @ts-ignore
       router[method](`${mpath}${basename === "index" ? "" : basename}`, tempm[method]);
