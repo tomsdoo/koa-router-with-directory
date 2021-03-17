@@ -111,7 +111,7 @@ function attachDirToRouter(router, provided_path) {
                         .forEach(function (file) {
                         var f = path.relative(provided_path, file);
                         var tempm = require(file);
-                        var mpath = ("/" + f.slice(0, f.lastIndexOf("/") + 1)).replace(/_/g, ":");
+                        var mpath = ("/" + f.slice(0, f.lastIndexOf(path.sep) + 1)).replace(/_/g, ":");
                         var basename = path.basename(f, path.extname(f));
                         ["get", "post", "put", "delete"]
                             .map(function (method) {
@@ -125,7 +125,7 @@ function attachDirToRouter(router, provided_path) {
                             .filter(function (mset) { return mset.functionname; })
                             .forEach(function (mset) {
                             // @ts-ignore
-                            router[mset.method]("" + mpath + (basename === "index" ? "" : basename), tempm[mset.functionname]);
+                            router[mset.method]("" + mpath + (basename === "index" ? "" : basename).replace(/\\/g, "/"), tempm[mset.functionname]);
                         });
                     });
                     return [2 /*return*/, Promise.resolve(router)];

@@ -28,7 +28,7 @@ export async function attachDirToRouter( router: Router, provided_path: string )
   .forEach((file) => {
     const f = path.relative(provided_path, file);
     const tempm = require(file);
-    const mpath = `/${f.slice(0, f.lastIndexOf("/")+1)}`.replace(/_/g, ":");
+    const mpath = `/${f.slice(0, f.lastIndexOf(path.sep)+1)}`.replace(/_/g, ":");
     const basename = path.basename(f, path.extname(f));
     ["get","post","put","delete"]
     .map((method) => {
@@ -40,7 +40,7 @@ export async function attachDirToRouter( router: Router, provided_path: string )
     .filter(mset => mset.functionname)
     .forEach((mset) => {
       // @ts-ignore
-      router[mset.method](`${mpath}${basename === "index" ? "" : basename}`, tempm[mset.functionname]);
+      router[mset.method](`${mpath}${(basename === "index" ? "" : basename).replace(/\\/g, "/")}`, tempm[mset.functionname]);
     });
   });
   return Promise.resolve(router);
