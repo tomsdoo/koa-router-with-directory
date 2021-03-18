@@ -40,7 +40,7 @@ export async function attachDirToRouter( router: Router, provided_path: string )
     .filter(mset => mset.functionname)
     .forEach((mset) => {
       // @ts-ignore
-      router[mset.method](`${mpath}${(basename === "index" ? "" : basename).replace(/\\/g, "/")}`, tempm[mset.functionname]);
+      router[mset.method](`${mpath}${(basename === "index" ? "" : basename)}`.replace(/\\/g, "/"), tempm[mset.functionname]);
     });
   });
   return Promise.resolve(router);

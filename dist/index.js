@@ -125,7 +125,7 @@ function attachDirToRouter(router, provided_path) {
                             .filter(function (mset) { return mset.functionname; })
                             .forEach(function (mset) {
                             // @ts-ignore
-                            router[mset.method]("" + mpath + (basename === "index" ? "" : basename).replace(/\\/g, "/"), tempm[mset.functionname]);
+                            router[mset.method](("" + mpath + (basename === "index" ? "" : basename)).replace(/\\/g, "/"), tempm[mset.functionname]);
                         });
                     });
                     return [2 /*return*/, Promise.resolve(router)];
