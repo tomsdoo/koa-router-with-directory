@@ -11,7 +11,7 @@ describe(`routes`, () => {
     (async () => {
       const r_router = await attachDirToRouter(router, path.join(__dirname, "routes/"));
       const myset = new Set();
-      r_router.stack.forEach((layer) => {
+      r_router.stack.forEach((layer: any) => {
         myset.add(layer.path);
       });
       assert(myset.size === 2, "count of paths");
@@ -22,7 +22,7 @@ describe(`routes`, () => {
         // {method: "GET", path: "/path2/:value/test"},
         // {method: "PUT", path: "/path2/:value/test"},
       ].every((tempo) => {
-        return r_router.stack.some((layer) => {
+        return r_router.stack.some((layer: any) => {
           return layer.methods.includes(tempo.method) && layer.path === tempo.path;
         });
       });
