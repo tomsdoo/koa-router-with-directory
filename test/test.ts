@@ -3,13 +3,22 @@ import Router from "koa-router";
 import { attachDirToRouter } from "../src/index";
 import * as path from "path";
 import { strict as assert } from "assert";
+import { describe, it, before } from "mocha";
 
 const router = new Router();
 
+let r_router = router;
+
 describe(`routes`, () => {
+  before(async () => {
+    r_router = await attachDirToRouter(
+      router,
+      path.join(__dirname, "routes/")
+    );
+  });
+
   it(`get routes`, (done) => {
     (async () => {
-      const r_router = await attachDirToRouter(router, path.join(__dirname, "routes/"));
       const myset = new Set();
       r_router.stack.forEach((layer: any) => {
         myset.add(layer.path);
