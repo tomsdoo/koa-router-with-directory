@@ -1,6 +1,6 @@
 // @ts-ignore
 import Router from "koa-router";
-const { attachDirToRouter } = require("../dist/index");
+import { attachDirToRouter } from "../src/index";
 const path = require("path");
 
 const assert = require("assert");
