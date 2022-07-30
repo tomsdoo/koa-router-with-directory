@@ -1,4 +1,5 @@
-const Router = require("koa-router");
+// @ts-ignore
+import Router from "koa-router";
 const { attachDirToRouter } = require("../dist/index");
 const path = require("path");
 
