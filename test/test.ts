@@ -25,18 +25,20 @@ describe(`routes`, () => {
     assert.equal(pathSet.size, 2);
   });
 
-  it(`get routes`, () => {
-    const result = [
-      {method: "GET", path: "/path1/:name/"},
-      {method: "GET", path: "/path2/:value/"},
-      {method: "POST", path: "/path2/:value/"},
-      // {method: "GET", path: "/path2/:value/test"},
-      // {method: "PUT", path: "/path2/:value/test"},
-    ].every((tempo) => {
-      return r_router.stack.some((layer: any) => {
-        return layer.methods.includes(tempo.method) && layer.path === tempo.path;
-      });
-    });
-    assert(result, "some combinations are missing");
+  it("combinations", () => {
+    const expected = [
+      { method: "GET", path: "/path1/:name/" },
+      { method: "GET", path: "/path2/:value/" },
+      { method: "POST", path: "/path2/:value/" }
+    ];
+
+    assert(
+      expected
+        .every(({ method, path }) =>
+          r_router.stack.find(({ methods, path: layerPath }) =>
+            methods.includes(method) && path === layerPath
+          )
+        )
+    );
   });
 });
