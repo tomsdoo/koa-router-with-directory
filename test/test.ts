@@ -1,7 +1,7 @@
 // @ts-ignore
 import Router from "koa-router";
 import { attachDirToRouter } from "../src/index";
-const path = require("path");
+import * as path from "path";
 
 const assert = require("assert");
 
