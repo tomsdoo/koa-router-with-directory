@@ -2,8 +2,7 @@
 import Router from "koa-router";
 import { attachDirToRouter } from "../src/index";
 import * as path from "path";
-
-const assert = require("assert");
+import { strict as assert } from "assert";
 
 const router = new Router();
 
