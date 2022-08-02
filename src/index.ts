@@ -8,17 +8,16 @@ export async function attachDirToRouter( router: Router, provided_path: string )
     const dirs : string[] = [];
     for(const dirent of dirents) {
       const mypath = `${dir}/${dirent.name}`;
-      [
-        dirent.isDirectory() ? dirs : [],
-        dirent.isFile() ? files : []
-      ].forEach((arr) => {
-        arr.push(mypath);
-      });
+      if(dirent.isDirectory()){
+        dirs.push(mypath);
+      }else if(dirent.isFile()){
+        files.push(mypath);
+      }
     }
     for(const d of dirs) {
       files = await readdirRecursively(d, files);
     }
-    return Promise.resolve(files);
+    return files;
   })
   (provided_path);
 
