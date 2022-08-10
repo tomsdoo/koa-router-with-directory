@@ -8,25 +8,25 @@ npm install koa-router-with-directory
 # Usage
 
 call attachDirToRouter before start koa server
-``` js
-const koa = require("koa");
-const Router = require("koa-router");
-const { attachDirToRouter } = require("koa-router-with-directory");
-const path = require("path");
+``` typescript
+import Koa from "koa";
+import Router from "koa-router";
+import { attachDirToRouter } from "koa-router-with-directory";
+import * as path from "path";
 
-const app = new koa();
 const router = new Router();
 
+const app = new Koa();
+const port = 8080;
+
 attachDirToRouter(router, path.join(__dirname, "routes/"))
-.then((rrouter) => {
-
-  app.use(router.routes());
-  app.use(router.allowedMethods());
-  app.listen(port, () => {
-    console.log("listeinig");
+  .then((rrouter) => {
+    app.use(router.routes());
+    app.use(router.allowedMethods());
+    app.listen(port, () => {
+      console.log(`listening ${port}`);
+    });
   });
-
-});
 ```
 
 the project directory should be like below.
@@ -45,9 +45,10 @@ project
 ```
 
 routed files should be named "index.js" and have one or more methods named get|post|put|delete.
-``` js
-exports.get = function(){}
-exports.post = function(){}
-exports.put = function(){}
-exports.delete = function(){}
+``` typescript
+import { Context } ffrom "koa";
+export function get(ctx: Context){}
+export function post(ctx: Context){}
+export function put(ctx: Context){}
+export function Delete(ctx: Context){}
 ```
