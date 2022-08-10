@@ -7,6 +7,10 @@
     "build": "tsc --build tsconfig.json",
     "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register \"test/test.ts\" --timeout 30000"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomsdoo/koa-router-with-directory.git"
+  },
   "keywords": [
     "koa-router"
   ],
