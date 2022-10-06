@@ -51,6 +51,7 @@ export async function attachDirToRouter(router: Router, provided_path: string) {
               /\\/g,
               "/"
             ),
+            // @ts-ignore
             tempm[mset.functionname]
           );
         });
