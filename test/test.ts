@@ -11,10 +11,7 @@ let r_router = router;
 
 describe(`routes`, () => {
   before(async () => {
-    r_router = await attachDirToRouter(
-      router,
-      path.join(__dirname, "routes/")
-    );
+    r_router = await attachDirToRouter(router, path.join(__dirname, "routes/"));
   });
 
   it("count of paths", () => {
@@ -29,16 +26,16 @@ describe(`routes`, () => {
     const expected = [
       { method: "GET", path: "/path1/:name/" },
       { method: "GET", path: "/path2/:value/" },
-      { method: "POST", path: "/path2/:value/" }
+      { method: "POST", path: "/path2/:value/" },
     ];
 
     assert(
-      expected
-        .every(({ method, path }) =>
-          r_router.stack.find(({ methods, path: layerPath }) =>
+      expected.every(({ method, path }) =>
+        r_router.stack.find(
+          ({ methods, path: layerPath }) =>
             methods.includes(method) && path === layerPath
-          )
         )
+      )
     );
   });
 });
