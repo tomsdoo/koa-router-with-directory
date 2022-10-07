@@ -15,6 +15,16 @@
     "prepare": "husky install",
     "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register \"test/test.ts\" --timeout 30000"
   },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run lint:src",
+      "npm run format:src"
+    ],
+    "test/**/*.ts": [
+      "npm run lint:test",
+      "npm run format:test"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tomsdoo/koa-router-with-directory.git"
@@ -37,6 +47,7 @@
     "eslint-plugin-promise": "^6.0.1",
     "husky": "^8.0.1",
     "koa-router": "^10.0.0",
+    "lint-staged": "^13.0.3",
     "mocha": "^10.0.0",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
