@@ -37,6 +37,7 @@
     "eslint-plugin-promise": "^6.0.1",
     "husky": "^8.0.1",
     "koa-router": "^10.0.0",
+    "lint-staged": "^13.0.3",
     "mocha": "^10.0.0",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
