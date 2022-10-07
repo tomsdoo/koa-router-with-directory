@@ -2,7 +2,7 @@ import Router from "koa-router";
 import * as fs from "fs";
 import * as path from "path";
 
-export async function attachDirToRouter(router: Router, provided_path: string) {
+export async function attachDirToRouter(router: Router, providedPath: string): Promise<Router> {
   const files = await (async function readdirRecursively(
     dir: string,
     files: string[] = []
@@ -21,13 +21,14 @@ export async function attachDirToRouter(router: Router, provided_path: string) {
       files = await readdirRecursively(d, files);
     }
     return files;
-  })(provided_path);
+  })(providedPath);
 
   files
     // .filter((file) => path.extname(file) === ".js")
     .filter((file) => path.basename(file) === "index.js")
     .forEach((file) => {
-      const f = path.relative(provided_path, file);
+      const f = path.relative(providedPath, file);
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const tempm = require(file);
       const mpath = `/${f.slice(0, f.lastIndexOf(path.sep) + 1)}`.replace(
         /_/g,
@@ -38,25 +39,25 @@ export async function attachDirToRouter(router: Router, provided_path: string) {
         .map((method) => {
           for (const tempmethod in tempm) {
             if (tempmethod.toUpperCase() === method.toUpperCase()) {
-              return { method: method, functionname: tempmethod };
+              return { method, functionname: tempmethod };
             }
           }
-          return { method: method, functionname: null };
+          return { method, functionname: null };
         })
         .filter((mset) => mset.functionname)
         .forEach((mset) => {
-          // @ts-ignore
+          // @ts-expect-error
           router[mset.method](
             `${mpath}${basename === "index" ? "" : basename}`.replace(
               /\\/g,
               "/"
             ),
-            // @ts-ignore
+            // @ts-expect-error
             tempm[mset.functionname]
           );
         });
     });
-  return Promise.resolve(router);
+  return await Promise.resolve(router);
 }
 
 export default attachDirToRouter;
