@@ -4,20 +4,15 @@ import * as path from "path";
 import { strict as assert } from "assert";
 import { describe, it, before } from "mocha";
 
-const router = new Router();
-
-let rRouter = router;
+let router: Router;
 
 describe(`routes`, () => {
   before(async () => {
-    rRouter = await attachDirToRouter(router, path.join(__dirname, "routes/"));
+    router = await attachDirToRouter(new Router(), path.join(__dirname, "routes/"));
   });
 
   it("count of paths", () => {
-    const pathSet = new Set();
-    rRouter.stack.forEach(({ path }) => {
-      pathSet.add(path);
-    });
+    const pathSet = new Set(router.stack.map(({ path }) => path));
     assert.equal(pathSet.size, 2);
   });
 
@@ -30,7 +25,7 @@ describe(`routes`, () => {
 
     assert(
       expected.every(({ method, path }) =>
-        rRouter.stack.find(
+        router.stack.find(
           ({ methods, path: layerPath }) =>
             methods.includes(method) && path === layerPath
         )
