@@ -2,7 +2,10 @@ import Router from "koa-router";
 import * as fs from "fs";
 import * as path from "path";
 
-export async function attachDirToRouter(router: Router, providedPath: string): Promise<Router> {
+export async function attachDirToRouter(
+  router: Router,
+  providedPath: string
+): Promise<Router> {
   const files = await (async function readdirRecursively(
     dir: string,
     files: string[] = []

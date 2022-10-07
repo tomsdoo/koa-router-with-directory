@@ -8,7 +8,10 @@ let router: Router;
 
 describe(`routes`, () => {
   before(async () => {
-    router = await attachDirToRouter(new Router(), path.join(__dirname, "routes/"));
+    router = await attachDirToRouter(
+      new Router(),
+      path.join(__dirname, "routes/")
+    );
   });
 
   it("count of paths", () => {
