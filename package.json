@@ -2,12 +2,15 @@
   "name": "koa-router-with-directory",
   "version": "1.9.0",
   "description": "koa-router with your directory",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "scripts": {
-    "build": "tsc --build tsconfig.json",
+    "build": "tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
     "format:src": "prettier --write src/**/*.ts",
     "format:test": "prettier --write test/**/*.ts",
     "lint:src": "eslint src/**/*.ts",
+    "lint:test": "eslint test/**/*.ts",
     "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register \"test/test.ts\" --timeout 30000"
   },
   "repository": {
