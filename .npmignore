@@ -1,7 +1,11 @@
+.github/
+.husky/
+docs/
 node_modules/
 src/
 test/
-tsconfig.json
-package-lock.json
-.npmignore
+.eslintrc.js
 .gitignore
+.npmignore
+package-lock.json
+tsconfig.*.json
