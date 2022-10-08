@@ -1,7 +1,8 @@
 # koa-router-with-directory
 
 `attachDirToRouter()` attaches your directory into koa-router.  
-this package requires [koa](https://www.npmjs.com/package/koa) and [koa-router](https://www.npmjs.com/package/koa-router).
+The installations of [koa](https://www.npmjs.com/package/koa) and [koa-router](https://www.npmjs.com/package/koa-router) on your own are pre-requisites of this package.
+
 
 ![npm](https://img.shields.io/npm/v/koa-router-with-directory)
 ![NPM](https://img.shields.io/npm/l/koa-router-with-directory)
