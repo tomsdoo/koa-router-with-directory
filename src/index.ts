@@ -34,8 +34,8 @@ export async function attachDirToRouter(
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const tempm = require(file);
       const mpath = `/${f.slice(0, f.lastIndexOf(path.sep) + 1)}`.replace(
-        /_/g,
-        ":"
+        /\/_/g,
+        "/:"
       );
       const basename = path.basename(f, path.extname(f));
       ["get", "post", "put", "delete"]
