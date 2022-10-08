@@ -1,7 +1,18 @@
 # koa-router-with-directory
 
+`attachDirToRouter()` attaches your directory into koa-router.  
+this package requires [koa](https://www.npmjs.com/package/koa) and [koa-router](https://www.npmjs.com/package/koa-router).
+
+![npm](https://img.shields.io/npm/v/koa-router-with-directory)
+![NPM](https://img.shields.io/npm/l/koa-router-with-directory)
+![npms.io (quality)](https://img.shields.io/npms-io/quality-score/koa-router-with-directory)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/koa-router-with-directory)
+![Maintenance](https://img.shields.io/maintenance/yes/2022)
+
+[![](https://nodei.co/npm/koa-router-with-directory.svg?mini=true)](https://www.npmjs.com/package/koa-router-with-directory)
+
 ## Installation
-``` sh
+``` shell
 npm install koa-router-with-directory
 ```
 
@@ -30,7 +41,7 @@ attachDirToRouter(router, path.join(__dirname, "routes/"))
 ```
 
 the project directory should be like below.
-``` sh
+``` shell
 project
 |- routes
 | |- some
