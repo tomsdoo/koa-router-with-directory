@@ -11,14 +11,17 @@ this package requires [koa](https://www.npmjs.com/package/koa) and [koa-router](
 
 [![](https://nodei.co/npm/koa-router-with-directory.svg?mini=true)](https://www.npmjs.com/package/koa-router-with-directory)
 
-## Installation
+
+## installation
+
 ``` shell
 npm install koa-router-with-directory
 ```
 
-# Usage
+## usage
 
-call attachDirToRouter before start koa server
+call attachDirToRouter before start koa server.
+
 ``` typescript
 import Koa from "koa";
 import Router from "koa-router";
@@ -40,7 +43,10 @@ attachDirToRouter(router, path.join(__dirname, "routes/"))
   });
 ```
 
+### directory structures
+
 the project directory should be like below.
+
 ``` shell
 project
 |- routes
