@@ -8,7 +8,7 @@ See [koa-router-with-directory.netlify.app](https://koa-router-with-directory.ne
 ![NPM](https://img.shields.io/npm/l/koa-router-with-directory)
 ![npms.io (quality)](https://img.shields.io/npms-io/quality-score/koa-router-with-directory)
 ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/koa-router-with-directory)
-![Maintenance](https://img.shields.io/maintenance/yes/2022)
+![Maintenance](https://img.shields.io/maintenance/yes/2024)
 
 [![](https://nodei.co/npm/koa-router-with-directory.svg?mini=true)](https://www.npmjs.com/package/koa-router-with-directory)
 
