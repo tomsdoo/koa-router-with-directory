@@ -1,6 +1,6 @@
 {
   "name": "koa-router-with-directory",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "koa-router with your directory",
   "types": "dist/esm/index.d.ts",
   "exports": {
