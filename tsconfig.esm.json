@@ -1,11 +1,12 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "composite": true,
     "target": "es2022",
     "module": "es2022",
-     "outDir": "./dist/esm/",
+    "outDir": "./dist/esm/",
   },
   "files":[
-    "src/index.ts"
+    "src/nextindex.ts"
   ]
 }
