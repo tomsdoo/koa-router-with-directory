@@ -9,7 +9,7 @@ const { spyGet, spyPost, spyPut, spyDelete } = vi.hoisted(() => ({
   spyDelete: vi.fn(),
 }));
 
-type Handler = (path: string, f: Function) => unknown;
+type Handler = (path: string, f: () => Promise<void>) => unknown;
 interface Router {
   get: Handler;
   post: Handler;
