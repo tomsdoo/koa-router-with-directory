@@ -1,39 +1,19 @@
-import Router from "koa-router";
-import * as fs from "fs";
+import fg from "fast-glob";
 import * as path from "path";
 
-export async function attachDirToRouter(
-  router: Router,
-  providedPath: string
-): Promise<Router> {
-  const files = await (async function readdirRecursively(
-    dir: string,
-    files: string[] = []
-  ) {
-    const dirents = await fs.promises.readdir(dir, { withFileTypes: true });
-    const dirs: string[] = [];
-    for (const dirent of dirents) {
-      const mypath = `${dir}/${dirent.name}`;
-      if (dirent.isDirectory()) {
-        dirs.push(mypath);
-      } else if (dirent.isFile()) {
-        files.push(mypath);
-      }
-    }
-    for (const d of dirs) {
-      files = await readdirRecursively(d, files);
-    }
-    return files;
-  })(providedPath);
-
-  for (const file of files.filter(
-    (file) => path.basename(file) === "index.js"
-  )) {
-    const f = path.relative(providedPath, file);
+export async function attachDirToRouter<T>(
+  router: T,
+  source: string,
+): Promise<T> {
+  const files = await fg(`${source}/**/*.(ts|js)`, { onlyFiles: true });
+  for (const file of files
+    .filter((file) => path.basename(file) === "index.js")
+    .sort()) {
+    const f = path.relative(source, file);
     const tempm = await import(file);
     const mpath = `/${f.slice(0, f.lastIndexOf(path.sep) + 1)}`.replace(
       /\/_/g,
-      "/:"
+      "/:",
     );
     const basename = path.basename(f, path.extname(f));
     ["get", "post", "put", "delete"]
@@ -45,18 +25,15 @@ export async function attachDirToRouter(
         }
         return { method, functionname: null };
       })
-      .filter((mset) => mset.functionname)
-      .forEach((mset) => {
-        // @ts-expect-error
-        router[mset.method](
+      .filter(({ functionname }) => functionname != null)
+      .forEach(({ method, functionname }) => {
+        // @ts-expect-error method existss
+        router[method as Method](
           `${mpath}${basename === "index" ? "" : basename}`.replace(/\\/g, "/"),
-          // @ts-expect-error
-          tempm[mset.functionname]
+          // @ts-expect-error functionname exists
+          tempm[functionname],
         );
       });
   }
-
-  return await Promise.resolve(router);
+  return router;
 }
-
-export default attachDirToRouter;
