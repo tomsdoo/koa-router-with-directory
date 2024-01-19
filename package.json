@@ -26,8 +26,7 @@
     "lint:test": "eslint test/**/*.ts",
     "prepare": "husky install",
     "serve:doc": "mdbook --serve --directory docs",
-    "test:vitest": "vitest",
-    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register \"test/test.ts\" --timeout 30000"
+    "test": "vitest"
   },
   "lint-staged": {
     "docs/**/*.html": "npm run format:document",
