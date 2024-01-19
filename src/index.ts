@@ -3,7 +3,7 @@ import * as path from "path";
 
 export async function attachDirToRouter<T>(
   router: T,
-  source: string
+  source: string,
 ): Promise<T> {
   const files = await fg(`${source}/**/*.(ts|js)`, { onlyFiles: true });
   for (const file of files
@@ -13,7 +13,7 @@ export async function attachDirToRouter<T>(
     const tempm = await import(file);
     const mpath = `/${f.slice(0, f.lastIndexOf(path.sep) + 1)}`.replace(
       /\/_/g,
-      "/:"
+      "/:",
     );
     const basename = path.basename(f, path.extname(f));
     ["get", "post", "put", "delete"]
@@ -31,7 +31,7 @@ export async function attachDirToRouter<T>(
         router[method as Method](
           `${mpath}${basename === "index" ? "" : basename}`.replace(/\\/g, "/"),
           // @ts-expect-error functionname exists
-          tempm[functionname]
+          tempm[functionname],
         );
       });
   }

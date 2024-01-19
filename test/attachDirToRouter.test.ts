@@ -35,28 +35,28 @@ describe("attachDirToRouter()", () => {
   it("proceeding the test files", async () => {
     await attachDirToRouter(
       router,
-      fileURLToPath(new URL("./routes/", import.meta.url))
+      fileURLToPath(new URL("./routes/", import.meta.url)),
     );
     expect(spyGet).toHaveBeenCalledTimes(4);
     expect(spyGet).toHaveBeenNthCalledWith(
       1,
       "/:user/:article/",
-      expect.anything()
+      expect.anything(),
     );
     expect(spyGet).toHaveBeenNthCalledWith(
       2,
       "/:user/:connection_string/",
-      expect.anything()
+      expect.anything(),
     );
     expect(spyGet).toHaveBeenNthCalledWith(
       3,
       "/path1/:name/",
-      expect.anything()
+      expect.anything(),
     );
     expect(spyGet).toHaveBeenNthCalledWith(
       4,
       "/path2/:value/",
-      expect.anything()
+      expect.anything(),
     );
   });
 });
