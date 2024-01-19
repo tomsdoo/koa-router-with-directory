@@ -9,7 +9,6 @@ export async function attachDirToRouter<T>(
   for (const file of files
     .filter((file) => path.basename(file) === "index.js")
     .sort()) {
-    console.log(file);
     const f = path.relative(source, file);
     const tempm = await import(file);
     const mpath = `/${f.slice(0, f.lastIndexOf(path.sep) + 1)}`.replace(
@@ -31,6 +30,7 @@ export async function attachDirToRouter<T>(
         // @ts-expect-error method existss
         router[method as Method](
           `${mpath}${basename === "index" ? "" : basename}`.replace(/\\/g, "/"),
+          // @ts-expect-error functionname exists
           tempm[functionname]
         );
       });

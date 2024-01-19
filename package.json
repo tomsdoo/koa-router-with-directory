@@ -2,22 +2,22 @@
   "name": "koa-router-with-directory",
   "version": "1.11.1",
   "description": "koa-router with your directory",
-  "main": "dist/nextindex.cjs",
-  "module": "dist/nextindex.js",
-  "types": "dist/esm/src/nextindex.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/esm/src/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/nextindex.js",
-      "require": "./dist/nextindex.cjs",
-      "types": "./dist/esm/src/nextindex.d.ts",
-      "default": "./dist/nextindex.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/esm/src/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
     "build:esm": "tsc --project tsconfig.esm.json",
     "build:tsup": "tsup",
-    "build": "tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
+    "build": "npm run build:tsup && npm run build:esm",
     "format": "npm run format:src && npm run format:test && npm run format:document",
     "format:src": "prettier --write src/**/*.ts",
     "format:test": "prettier --write test/**/*.ts",

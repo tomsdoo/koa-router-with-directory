@@ -7,6 +7,6 @@
     "outDir": "./dist/esm/",
   },
   "files":[
-    "src/nextindex.ts"
+    "src/index.ts"
   ]
 }

@@ -1,5 +1,5 @@
 import { beforeEach, afterEach, describe, it, expect, vi } from "vitest";
-import { attachDirToRouter } from "../src/nextindex";
+import { attachDirToRouter } from "../src/index";
 import { fileURLToPath } from "node:url";
 
 const { spyGet, spyPost, spyPut, spyDelete } = vi.hoisted(() => ({
