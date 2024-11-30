@@ -1,5 +1,5 @@
-exports.get = function(ctx, next) {
+exports.get = function (ctx, next) {
   ctx.response.status = 200;
   ctx.response.type = "application/json";
-  ctx.response.body = JSON.stringify({message: "ok"});
+  ctx.response.body = JSON.stringify({ message: "ok" });
 };
