@@ -1,7 +1,13 @@
 {
-  "references": [
-    {
-      "path": "./tsconfig.esm.json"
-    }
-  ]
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "strict": true,
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
 }
