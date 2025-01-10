@@ -50,6 +50,6 @@
     "vitest": "2.1.8"
   },
   "dependencies": {
-    "fast-glob": "3.3.2"
+    "fast-glob": "3.3.3"
   }
 }
