@@ -39,9 +39,9 @@
   "license": "MIT",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@tomsd/md-book": "1.3.6",
-    "@tsconfig/node22": "22.0.1",
-    "@types/node": "22.15.19",
+    "@tomsd/md-book": "1.3.7",
+    "@tsconfig/node22": "22.0.2",
+    "@types/node": "22.15.21",
     "husky": "9.1.7",
     "lint-staged": "15.5.1",
     "ts-node": "10.9.2",
