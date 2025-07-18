@@ -1,6 +1,6 @@
 {
   "name": "koa-router-with-directory",
-  "version": "1.12.5",
+  "version": "1.13.0",
   "description": "koa-router with your directory",
   "type": "module",
   "exports": {
