@@ -1,5 +1,5 @@
-import * as path from "path";
 import fg from "fast-glob";
+import * as path from "path";
 
 export async function attachDirToRouter<T>(
   router: T,
