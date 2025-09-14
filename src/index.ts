@@ -1,23 +1,9 @@
 import fg from "fast-glob";
 import http from "http";
 import * as path from "path";
+import { extractHandlerMappings, hasMethod } from "@/util";
 
 const METHODS = http.METHODS.map((method) => method.toLowerCase());
-
-function hasMethod(
-  router: unknown,
-  method: string,
-): router is {
-  [method]: (
-    path: string,
-    handler: (ctx: unknown, next: unknown) => Promise<void>,
-  ) => void;
-} {
-  if (router == null || typeof router !== "object") {
-    return false;
-  }
-  return method in router;
-}
 
 export async function attachDirToRouter<T>(
   router: T,
@@ -28,9 +14,11 @@ export async function attachDirToRouter<T>(
   }
 
   const files = await fg(`${source}/**/*.(ts|js)`, { onlyFiles: true });
-  for (const file of files
+  const indexFiles = files
     .filter((file) => path.basename(file) === "index.js")
-    .sort()) {
+    .sort();
+
+  for (const file of indexFiles) {
     const f = path.relative(source, file);
     const targetModule = await import(file);
     const modulePath = `/${f.slice(0, f.lastIndexOf(path.sep) + 1)}`.replace(
@@ -38,33 +26,21 @@ export async function attachDirToRouter<T>(
       "/:",
     );
     const basename = path.basename(f, path.extname(f));
-    METHODS.map((method) => {
-      for (const targetMethod in targetModule) {
-        if (targetMethod.toUpperCase() === method.toUpperCase()) {
-          return { method, handlerName: targetMethod };
-        }
+    for (const { method, handlerName } of extractHandlerMappings(
+      targetModule,
+      METHODS,
+    )) {
+      if (hasMethod(router, method) === false) {
+        continue;
       }
-      return { method, handlerName: null };
-    })
-      .filter(
-        (module): module is { method: string; handlerName: string } =>
-          module.handlerName != null,
-      )
-      .forEach(({ method, handlerName }) => {
-        if (method in router === false) {
-          return;
-        }
-        if (hasMethod(router, method) === false) {
-          return;
-        }
-        router[method](
-          `${modulePath}${basename === "index" ? "" : basename}`.replace(
-            /\\/g,
-            "/",
-          ),
-          targetModule[handlerName],
-        );
-      });
+      router[method](
+        `${modulePath}${basename === "index" ? "" : basename}`.replace(
+          /\\/g,
+          "/",
+        ),
+        targetModule[handlerName],
+      );
+    }
   }
   return router;
 }
