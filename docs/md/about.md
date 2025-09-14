@@ -1,7 +1,7 @@
 # koa-router-with-directory
 
 `attachDirToRouter()` attaches your directory into koa-router.  
-The installations of [koa](https://www.npmjs.com/package/koa) and [koa-router](https://www.npmjs.com/package/koa-router) on your own are pre-requisites of this package.
+The installations of [koa](https://www.npmjs.com/package/koa) and [@koa/router](https://www.npmjs.com/package/@koa/router) on your own are pre-requisites of this package.
 
 
 ![npm](https://img.shields.io/npm/v/koa-router-with-directory?style=for-the-badge&logo=npm)
@@ -30,7 +30,7 @@ call attachDirToRouter before start koa server.
 
 ``` typescript
 import Koa from "koa";
-import Router from "koa-router";
+import Router from "@koa/router";
 import { attachDirToRouter } from "koa-router-with-directory";
 import * as path from "path";
 
