@@ -27,7 +27,7 @@ export async function attachDirToRouter<T>(
       })
       .filter(({ functionname }) => functionname != null)
       .forEach(({ method, functionname }) => {
-        // @ts-expect-error method existss
+        // @ts-expect-error method exists
         router[method as Method](
           `${mpath}${basename === "index" ? "" : basename}`.replace(/\\/g, "/"),
           // @ts-expect-error functionname exists
