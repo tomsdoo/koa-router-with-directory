@@ -30,7 +30,7 @@ call attachDirToRouter before start koa server.
 
 ``` typescript
 import Koa from "koa";
-import Router from "koa-router";
+import Router from "@koa/router";
 import { attachDirToRouter } from "koa-router-with-directory";
 import * as path from "path";
 
