@@ -38,10 +38,10 @@
   "author": "tom",
   "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "2.2.2",
-    "@tomsd/md-book": "2.0.3",
+    "@biomejs/biome": "2.2.4",
+    "@tomsd/md-book": "2.0.4",
     "@tsconfig/node22": "22.0.2",
-    "@types/node": "24.3.0",
+    "@types/node": "24.5.0",
     "husky": "9.1.7",
     "lint-staged": "16.1.6",
     "ts-node": "10.9.2",
