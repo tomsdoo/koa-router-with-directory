@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "lint": "biome check",
     "prepare": "husky",
     "serve:doc": "mdbook --serve --directory docs",
@@ -45,7 +45,7 @@
     "husky": "9.1.7",
     "lint-staged": "16.4.0",
     "ts-node": "10.9.2",
-    "tsup": "8.5.1",
+    "tsdown": "0.21.9",
     "typescript": "6.0.3",
     "vitest": "4.1.4"
   },
