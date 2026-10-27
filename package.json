@@ -38,14 +38,14 @@
   "author": "tom",
   "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
+    "@biomejs/biome": "2.6.2",
     "@tomsd/md-book": "2.1.0",
     "@tsconfig/node22": "22.0.6",
     "@types/node": "26.6.5",
     "husky": "9.1.7",
     "lint-staged": "17.6.0",
     "ts-node": "10.9.2",
-    "tsdown": "0.23.1",
+    "tsdown": "0.23.2",
     "typescript": "6.0.3",
     "vitest": "5.0.5"
   },
